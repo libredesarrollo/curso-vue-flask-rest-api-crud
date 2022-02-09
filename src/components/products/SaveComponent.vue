@@ -1,35 +1,38 @@
 <template>
   <h1>Registrar productos</h1>
 
-  <form @submit="sendForm">
-    <label for="">Nombre</label>
-    <input type="text" v-model="product.name" />
-    <br />
-    <label for="">Precio</label>
-    <input type="number" v-model="product.price" />
-    <br />
+  <form @submit="sendForm" style="max-width: 300px">
+    <va-input
+      class="mt-2"
+      placeholder="Nombre"
+      type="text"
+      v-model="product.name"
+    />
+    <va-input
+      class="mt-2"
+      placeholder="Precio"
+      type="number"
+      v-model="product.price"
+    />
     <label for="">Categoria</label>
-    <select v-model="product.category_id">
-      <option v-for="c in categories.data" :key="c.id" :value="c.id">
-        {{ c.name }}
-      </option>
-    </select>
+   
+    <va-select v-model="product.category" :options="categories"> </va-select>
 
-    <input type="submit" value="Enviar" />
+    <va-button type="submit" class="mt-2">Enviar</va-button>
   </form>
 </template>
 
 <script>
 export default {
   props: ["productEdit"],
-  emits: ['productInsert','productUpdate'],
+  emits: ["productInsert", "productUpdate"],
   data() {
     return {
       categories: [],
       product: {
         name: "",
         price: "",
-        category_id: "",
+        category: "",
       },
     };
   },
@@ -42,7 +45,7 @@ export default {
       const formData = new FormData();
 
       formData.append("name", this.product.name);
-      formData.append("category_id", this.product.category_id);
+      formData.append("category_id", this.product.category.value);
       formData.append("price", this.product.price);
 
       if (this.productEdit == "") this.insert(formData);
@@ -69,12 +72,23 @@ export default {
     if (this.productEdit != "") {
       this.product.name = this.productEdit.name;
       this.product.price = this.productEdit.price;
-      this.product.category_id = this.productEdit.category_id;
+      this.product.category = {
+        id: this.productEdit.category_id,
+        text: this.productEdit.category
+      };
     }
 
     fetch("http://127.0.0.1:5000/api/categories/")
       .then((res) => res.json())
-      .then((res) => (this.categories = res));
+      .then(
+        (res) =>
+          (this.categories = res.data.map((i) => {
+            return {
+              value: i.id,
+              text: i.name,
+            };
+          }))
+      );
   },
 };
 </script>

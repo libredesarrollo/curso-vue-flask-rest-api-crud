@@ -1,6 +1,5 @@
 <template>
-  <h1>Listado de Productos</h1>
-
+  
   <save-component
     :key="product"
     :productEdit="product"
@@ -16,14 +15,40 @@
     :product="productShow"
   />
 
-  <div v-for="(p, i) in products.data" :key="p.id">
-    <button @click="productEdit(p, i)">Editar</button>
-    <button @click="productShow = p">Ver</button>
-    <button @click="productDelete(p, i)">Eliminar</button>
-    {{ p.name }}
-  </div>
+  <va-card outlined>
+    <va-card-title> Listado Productos </va-card-title>
+    <table class="va-table va-table--hoverable m-auto" style="margin: auto">
+      <tr>
+        <th>Nombre</th>
+        <th>Opciones</th>
+      </tr>
+      <tr v-for="(p, i) in products.data" :key="p.id">
+        <td>
+          {{ p.name }}
+        </td>
 
-  <button @click="product = ''">Crear</button>
+        <td>
+          <va-button class="mr-1" size="small" @click="productEdit(p, i)"
+            >Editar</va-button
+          >
+          <va-button class="mr-1" size="small" @click="productShow = p"
+            >Ver</va-button
+          >
+          <va-button
+            class="mr-1"
+            color="danger"
+            size="small"
+            @click="productDelete(p, i)"
+            >Eliminar</va-button
+          >
+        </td>
+      </tr>
+    </table>
+  </va-card>
+
+  <va-button icon-right="create" class="fab" @click="product = ''"
+    >Crear</va-button
+  >
 </template>
 
 <script>
@@ -58,7 +83,7 @@ export default {
       if (confirm("¿Seguro que quieres eliminar el registro " + product.name)) {
         this.products.data.splice(index, 1);
 
-        fetch("http://127.0.0.1:5000/api/products/"+product.id, {
+        fetch("http://127.0.0.1:5000/api/products/" + product.id, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -79,3 +104,13 @@ export default {
   },
 };
 </script>
+
+<style>
+.fab {
+  position: fixed !important;
+  margin-top: -50px !important;
+  margin-right: 23px !important;
+  top: 100%;
+  right: 0;
+}
+</style>

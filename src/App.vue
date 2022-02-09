@@ -1,5 +1,7 @@
 <template>
-  <list-component />
+  <div class="container">
+    <list-component />
+  </div>
 </template>
 
 <script>
@@ -12,3 +14,14 @@ export default {
   },
 };
 </script>
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+.container {
+  margin: auto;
+  width: 100%;
+  max-width: 1280px;
+}
+</style>
