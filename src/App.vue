@@ -24,4 +24,9 @@ export default {
   width: 100%;
   max-width: 1280px;
 }
+.center{
+  margin:auto; 
+  width: auto !important;
+  display:table !important;
+}
 </style>

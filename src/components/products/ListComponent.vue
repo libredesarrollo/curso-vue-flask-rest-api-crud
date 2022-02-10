@@ -1,28 +1,32 @@
 <template>
   
-  <save-component
-    :key="product"
-    :productEdit="product"
-    @productInsert="productInsert"
-    @productUpdate="productUpdate"
-  />
-
-  <hr />
+  <va-modal v-model="showModalSave">
+    <save-component
+      :key="product"
+      :productEdit="product"
+      @productInsert="productInsert"
+      @productUpdate="productUpdate"
+    />
+  </va-modal>
 
   <show-component
     :key="productShow"
     v-if="productShow != ''"
-    :product="productShow"
+    :id="productShow.id"
   />
 
-  <va-card outlined>
+  <va-card outlined class="center">
     <va-card-title> Listado Productos </va-card-title>
     <table class="va-table va-table--hoverable m-auto" style="margin: auto">
       <tr>
         <th>Nombre</th>
         <th>Opciones</th>
       </tr>
-      <tr v-for="(p, i) in products.data" :key="p.id">
+      <tr
+        v-for="(p, i) in products.data"
+        :key="p.id"
+        :class="{ selectTr: p == productShow }"
+      >
         <td>
           {{ p.name }}
         </td>
@@ -46,14 +50,14 @@
     </table>
   </va-card>
 
-  <va-button icon-right="create" class="fab" @click="product = ''"
+  <va-button icon-right="create" class="fab" @click="product = ''; showModalSave = !showModalSave"
     >Crear</va-button
   >
 </template>
 
 <script>
 import SaveComponent from "./SaveComponent";
-import ShowComponent from "./ShowComponent";
+import ShowComponent from "./ShowFetchComponent";
 
 export default {
   components: {
@@ -67,6 +71,7 @@ export default {
       product: "",
       productShow: "",
       productIndex: 0,
+      showModalSave: false,
     };
   },
   methods: {
@@ -112,5 +117,8 @@ export default {
   margin-right: 23px !important;
   top: 100%;
   right: 0;
+}
+.selectTr {
+  background: #e3e3f7;
 }
 </style>
