@@ -1,31 +1,38 @@
-# Proyecto: CRUD con Vue 3 y Flask REST API
+# vueflask
 
-Este repositorio contiene la integración de un Backend moderno con Flask (trabajando de manera 100% headless como REST API) y un Frontend desarrollado de manera reactiva e independiente empleando **Vue 3**.
+This template should help get you started developing with Vue 3 in Vite.
 
-## Características principales
-- **Desacoplamiento Frontend/Backend**: La aplicación Flask actúa como un microservicio prestando APIs consumibles.
-- **Frontend con Vue 3**: Módulo refactorizado hacia un enfoque moderno empleando la herramienta `Vite` y abandonando el antiguo Vue CLI.
-- **Operaciones Asíncronas (AJAX)**: Implementación total de las operaciones de CRUD (Crear, Leer, Modificar, Eliminar) interactuando hacia el servidor usando la API de JavaScript nativa, `fetch()`. Además, se hace uso del protocolo `FormData` para enviar POST.
-- **CORS Autorizado**: Backend de Flask equipado y configurado con la biblioteca `Flask-CORS` para tolerar las consultas en modo cliente-servidor, que por default caen sobre la misma directiva de dominios estrictos que impone el navegador.
-- **Tránsito de Componentes**: Demostración y arquitectura sobre el paso de mensajes robusto y ágil entre componentes en una estructura de `Padre-Hijo`, usando inyección por referencias de propiedades y emitiendo directrices descendientes a través del notificador nativo (`$emit`) en caso de eventos personalizados generados por acciones visuales en pantalla.
+## Recommended IDE Setup
 
-## Instalación y ejecución
+[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-### Backend (Flask REST API)
-1. Instala el conector general y la herramienta `flask-cors`.
-2. Lanza tu servidor (usualmente sobre el puerto `5000`).
+## Recommended Browser Setup
 
-### Frontend (Vue 3 sobre Vite)
-1. Abre tu consola y sitúate directamente en la carpeta donde reside el proyecto y el `package.json`.
-2. Descarga y sincroniza las dependencias NPM usando:
-   ```bash
-   npm install
-   ```
-3. Activa tu entorno de desarrollo en vivo vía vite ingresando:
-   ```bash
-   npm run dev
-   ```
+- Chromium-based browsers (Chrome, Edge, Brave, etc.):
+  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
+- Firefox:
+  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
+  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
 
-## Más información
-Encuentra todos los pormenores, paso a paso y lineamientos de código sobre todas estas áreas de programación web integradas en nuestra serie de estudio oficial:
-[Curso de Flask en Desarrollo Libre](https://www.desarrollolibre.net/blog/flask/curso-flask)
+## Customize configuration
+
+See [Vite Configuration Reference](https://vite.dev/config/).
+
+## Project Setup
+
+```sh
+npm install
+```
+
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
+```
+
+### Compile and Minify for Production
+
+```sh
+npm run build
+```

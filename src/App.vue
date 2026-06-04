@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ListComponent from "./components/products/ListComponent";
+import ListComponent from "@/components/products/ListComponent.vue";
 
 export default {
   name: "App",
